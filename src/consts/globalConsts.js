@@ -40,9 +40,6 @@ export const MENU_ITEMS = [
     name: '3D Printer',
     icon: 'amazon',
     route: '/printers',
-    detail: {
-      route: '/3d-printer/:printerId'
-    }
   },
   {
     name: 'Filament',
@@ -53,6 +50,12 @@ export const MENU_ITEMS = [
     name: '404',
     icon: 'ship',
     route: '/404',
+    hide: true
+  },
+  {
+    name: 'Create new printer',
+    icon: 'ship',
+    route: '/printers/create-new-printer',
     hide: true
   },
 ]

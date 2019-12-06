@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import PrinterList from './pages/PrinterList';
 import AppMenu from './components/AppMenu';
 import AppPage from './components/AppPage';
 import AppModal from './components/AppModal';
 import Dashboard from './pages/Dashboard';
+import PrinterList from './pages/PrinterList';
+import NewPrinter from './pages/NewPrinter';
 import AppHeader from './components/AppHeader';
 import PrinterForm from './forms/PrinterForm';
 import _ from 'lodash';
@@ -18,7 +19,8 @@ const Application = ({ }) => {
         <AppMenu miniWidth={60} normalWidth={180}/>
         <AppPage>
           <Route exact path="/" component={Dashboard} />
-          <Route path="/printers" component={PrinterList} />
+          <Route exact path="/printers" component={PrinterList} />
+          <Route path="/printers/create-new-printer" component={NewPrinter} />
         </AppPage>
       </Router>
     </div>
