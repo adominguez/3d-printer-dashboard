@@ -1,23 +1,25 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory, useLocation } from "react-router-dom";
 import { getPrinterList } from '../actions/printers';
 import { printerList, printerListStatus } from '../selectors';
 
 const PrinterList = () => {
+  const history = useHistory();
+  const location = useLocation();
   const dispath = useDispatch();
   const printers = useSelector(state => printerList(state));
   const status = useSelector(state => printerListStatus(state));
 
-  console.log(status)
-  console.log(printers)
+  const loadingMap = [{}, {}, {}, {}, {}, {}, {}, {}];
+
 
   const onShowNewPrinterForm = () => {
-
+    history.push(`${location.pathname}/create-new-printer`);
   }
 
   useEffect(() => {
     if (!printers) {
-      console.log('pasando')
       dispath(getPrinterList());
     }
   });
@@ -49,6 +51,26 @@ const PrinterList = () => {
                   <h3>{p.printerName}</h3>
                   <p>Collaboratively administrate empowered markets via plug-and-play networks.</p>
                   <button>Here's why</button>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      }
+      {
+        status === 'LOADING' &&
+        <div className={`printer-list ${status.toLowerCase()}`}>
+          {
+            loadingMap && loadingMap.map((item, i) => (
+              <article key={`${i}-animation-loading-card`}>
+                <div className="loading-animation"></div>
+                <div className="image-loading" />
+                <div className="texting" />
+                <div className="texting" />
+                <div className="action">
+                  <div className="tick" />
+                  <div className="tick" />
+                  <div className="tick" />
                 </div>
               </article>
             ))
