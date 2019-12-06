@@ -1,0 +1,26 @@
+// 1px : calc(var(--microgutter / 4))
+// 2px : calc(var(--microgutter / 2))
+// 3px : calc(var(--minigutter / 4))
+// 4px : var(--nanogutter)
+// 5px : calc(var(--supergutter / 4))
+// 6px : calc(var(--minigutter / 2))
+// 8px : var(--microgutter)
+// 10px : calc(var(--supergutter / 2))
+// 12px : var(--minigutter)
+// 14px : calc(var(--hipergutter / 2))
+// 16px : var(--gutter)
+// 20px : var(--supergutter)
+// 24px : var(--megagutter)
+// 28px : var(--hipergutter)
+// 32px : var(--gigagutter)
+
+:root {
+  --nano-gutter : 0.25rem; //4px
+  --micro-gutter : 0.50rem; //8px
+  --mini-gutter : 0.75rem; //12px
+  --gutter: 1rem; //16px
+  --super-gutter : 1.25rem; //20px
+  --mega-gutter : 1.5rem; //24px
+  --hiper-gutter : 1.75rem; //28px
+  --giga-gutter : 2rem; //32px
+}
