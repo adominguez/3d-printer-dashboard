@@ -8,8 +8,10 @@ function AppMenu({expandMenu}) {
   const location = useLocation();
   const items = useSelector(state => menuItems(state));
 
+  const route = location.pathname.split("/").slice(1);
+
   const getSelectedPage = () => {
-    return items.find(item => item.route.includes(location.pathname)) || {};
+    return items.find(item => item.route.includes(route[0])) || {};
   }
   return (
     <nav className={expandMenu ? 'expand-menu' : ''}>
