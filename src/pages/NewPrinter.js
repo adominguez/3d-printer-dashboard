@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation } from "react-router-dom";
 import { printerList, printerListStatus } from '../selectors';
+import AppWizard from '../components/AppWizard';
+import AppStep from '../components/AppStep';
+import {changeStepPrinterWizard} from '../actions/printers'
 
 const NewPrinter = () => {
   const history = useHistory();
@@ -9,13 +12,26 @@ const NewPrinter = () => {
   const dispath = useDispatch();
   const printers = useSelector(state => printerList(state));
   const status = useSelector(state => printerListStatus(state));
+  const createPrinterWizard = useSelector(state => (state.printers.createPrinterWizard));
+  const {selectedStep} = createPrinterWizard
 
-  console.log({history})
-  console.log({location})
+  const changeStep = (step) => {
+    dispath(changeStepPrinterWizard(step))
+  }
 
   return (
     <section className="section-list">
-      Create new printer
+      <AppWizard selectedStep={selectedStep} changeStep={changeStep}>
+        <AppStep hidden={true} stepName="Inicio">
+          <div>Hola</div>
+        </AppStep>
+        <AppStep stepName="Intermedio">
+          <div>Adios</div>
+        </AppStep>
+        <AppStep stepName="Final">
+          <div>Adios</div>
+        </AppStep>
+      </AppWizard>
     </section>
   )
 }
