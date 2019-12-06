@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import printers from './printers';
+import application from './application';
 
 const rootReducer = combineReducers({
-	printers
+  printers,
+  application
 });
 
 export default rootReducer;

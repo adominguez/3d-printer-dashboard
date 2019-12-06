@@ -1,21 +1,31 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { useSelector } from 'react-redux'
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import {menuItems} from '../selectors';
 
-function AppMenu({menuList, expandMenu, selectItem, menuSelected}) {
+function AppMenu({expandMenu}) {
+  const location = useLocation();
+  const items = useSelector(state => menuItems(state));
+
+  const getSelectedPage = () => {
+    return items.find(item => item.route.includes(location.pathname)) || {};
+  }
   return (
     <nav className={expandMenu ? 'expand-menu' : ''}>
       {
-        menuList && menuList.length &&
+        items && items.length &&
         <ul>
           {
-            menuList.map((item, i) =>
-              <li key={i}>
-                <Link to={item.route} className={item.name === menuSelected ? 'selected' : ''} onClick={() => selectItem(item)}>
-                  <i className={`icon fa fa-${item.icon}`}></i>
-                  <span>{item.name}</span>
-                  <span></span>
-                </Link>
-              </li>
+            items.map((item, i) =>
+                !item.hide &&
+                <li key={i}>
+                  <Link to={item.route} className={item.name === getSelectedPage().name ? 'selected' : ''}>
+                    <i className={`icon fa fa-${item.icon}`}></i>
+                    <span>{item.name}</span>
+                    <span></span>
+                  </Link>
+                </li>
             )
           }
         </ul>

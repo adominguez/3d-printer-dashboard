@@ -39,7 +39,7 @@ export const MENU_ITEMS = [
   {
     name: '3D Printer',
     icon: 'amazon',
-    route: '/3d-printer',
+    route: '/printers',
     detail: {
       route: '/3d-printer/:printerId'
     }
@@ -48,6 +48,12 @@ export const MENU_ITEMS = [
     name: 'Filament',
     icon: 'ship',
     route: '/filament'
+  },
+  {
+    name: '404',
+    icon: 'ship',
+    route: '/404',
+    hide: true
   },
 ]
 

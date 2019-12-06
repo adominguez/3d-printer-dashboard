@@ -1,32 +1,31 @@
-import { GET_PRINTERS_LIST_START, GET_PRINTERS_LIST_ERROR, GET_PRINTERS_LIST_DONE } from '../consts/actionTypes';
+import { MENU_ITEMS } from '../consts/globalConsts'
 
 const initialState = {
-  loading: false,
-  printerListStatus: 'LOADING' // values: ['LOADING', 'COMPLETED', ERROR]
+  menuItems: MENU_ITEMS
 }
 
 export default function(state = initialState, action) {
   const actionTypes = {
-    [GET_PRINTERS_LIST_START]() {
+    /*[GET_PRINTERS_LIST_START]() {
       return {
         ...state,
-        printerListStatus: 'LOADING'
+        loading: true,
       };
     },
     [GET_PRINTERS_LIST_ERROR]() {
       return {
         ...state,
-        printerListStatus: 'ERROR'
+        loading: false,
       };
     },
     [GET_PRINTERS_LIST_DONE]() {
       const { printerList } = action;
       return {
         ...state,
-        printerListStatus: 'COMPLETED',
+        loading: false,
         printerList
       };
-    }
+    }*/
   }
   return actionTypes[action.type] ? actionTypes[action.type]() : {...state}
 }

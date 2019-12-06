@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import PrinterList from './pages/PrinterList';
 import AppMenu from './components/AppMenu';
 import AppPage from './components/AppPage';
@@ -9,19 +8,18 @@ import AppHeader from './components/AppHeader';
 import PrinterForm from './forms/PrinterForm';
 import _ from 'lodash';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { GET_PRINTERS } from './services';
-import { MENU_ITEMS } from './consts'
 
-const Application = ({}) => {
+const Application = ({ }) => {
 
   return (
     <div>
-      <AppHeader applicationTitle={'3DMakerNow dashboard'} />
       <Router>
-        <div>
+        <AppHeader applicationTitle={'3DMakerNow dashboard'} />
+        <AppMenu miniWidth={60} normalWidth={180}/>
+        <AppPage>
           <Route exact path="/" component={Dashboard} />
-          <Route path="/printer-list" component={PrinterList} />
-        </div>
+          <Route path="/printers" component={PrinterList} />
+        </AppPage>
       </Router>
     </div>
   );

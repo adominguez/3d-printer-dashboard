@@ -2,26 +2,12 @@ import { createStore } from 'redux';
 import { MODAL_OPTIONS, MENU_ITEMS, INPUTS_FORM } from './consts';
 import { printersDB } from './firebase';
 
-const getRoute = (url) => {
-  const route =  url.split("/");
-  return {
-    pathname: route[1],
-    url: route[2]
-  }
-}
-
-const getSelected = (url) => {
-  const route =  url.split("/");
-  return MENU_ITEMS.find(item => item.route === `/${route[1]}`).name;
-}
 
 
 const initialState = {
     ApplicationTitle: 'New application',
     printers: [],
     printerListState: 'LOADING',
-    menu: MENU_ITEMS,
-    menuSelected: getSelected(window.location.pathname),
     modal: {
       visible: false,
       type: null,
@@ -29,17 +15,10 @@ const initialState = {
       acceptedModal: false
     },
     newPrinter: INPUTS_FORM['NEW_PRINTER'],
-    route: getRoute(window.location.pathname),
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-  case 'SELECT_ITEM_MENU':
-    return {
-      ...state,
-      menuSelected: getSelected(action.item.route),
-      route: getRoute(window.location.pathname),
-    }
   case 'GET_PRINTER_LIST':
     return {
       ...state,

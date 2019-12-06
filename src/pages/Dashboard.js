@@ -2,7 +2,7 @@ import React from 'react';
 
 const Dashboard = ({ history }) => {
   const navigateToResults = (event) => {
-    history.push(`printer-list`);
+    history.push(`printers`);
   }
   return (
     <div>
