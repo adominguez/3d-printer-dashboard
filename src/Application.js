@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
 import AppMenu from './components/AppMenu';
 import AppPage from './components/AppPage';
 import AppModal from './components/AppModal';
@@ -7,10 +10,8 @@ import PrinterList from './pages/PrinterList';
 import NewPrinter from './pages/NewPrinter';
 import AppHeader from './components/AppHeader';
 import PrinterForm from './forms/PrinterForm';
-import _ from 'lodash';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
 const Application = ({ }) => {
+  const modal = useSelector(state => state.application.modal);
 
   return (
     <div>
@@ -23,6 +24,15 @@ const Application = ({ }) => {
           <Route path="/printers/create-new-printer" component={NewPrinter} />
         </AppPage>
       </Router>
+      {
+        modal.visible &&
+        <AppModal>
+          {
+            modal.type === 'NEW_PRINTER' &&
+            <PrinterForm type={modal.type} />
+          }
+        </AppModal>
+      }
     </div>
   );
 }
