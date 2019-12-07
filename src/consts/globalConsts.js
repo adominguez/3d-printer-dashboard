@@ -56,7 +56,8 @@ export const MENU_ITEMS = [
     name: 'Create new printer',
     icon: 'ship',
     route: '/printers/create-new-printer',
-    hide: true
+    hide: true,
+    backButton: true
   },
 ]
 
