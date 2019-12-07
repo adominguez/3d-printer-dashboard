@@ -57,12 +57,16 @@ const AppWizard = (props) => {
         {children[selectedStep]}
       </div>
       <div className="steps-footer">
-        <button hidden={prevStepButtonHidden} disabled={disabledPrevStepButton} onClick={prevStep}>
-          <span>{prevStepButtonText}</span>
-        </button>
-        <button hidden={nextStepButtonHidden} disabled={disabledNextStepButton} className="green" onClick={nextStep}>
-          <span>{nextStepButtonText}</span>
-        </button>
+        <div class="steps-footer-action-button">
+          <button hidden={prevStepButtonHidden} disabled={disabledPrevStepButton} onClick={prevStep}>
+            <span>{prevStepButtonText}</span>
+          </button>
+        </div>
+        <div class="steps-footer-action-button right">
+          <button hidden={nextStepButtonHidden} disabled={disabledNextStepButton} className="green" onClick={nextStep}>
+            <span>{nextStepButtonText}</span>
+          </button>
+        </div>
       </div>
     </div>
   );

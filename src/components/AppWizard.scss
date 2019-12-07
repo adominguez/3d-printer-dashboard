@@ -44,35 +44,42 @@ $grey : #222222;
     padding: 0.5rem 0;
     display: flex;
     justify-content: space-between;
-    button {
-      background-color: transparent;
-      border: 0;
-      cursor: pointer;
-      padding: 0.2rem 0.5rem;
-      font-family: $fontfamily;
-      font-size: 1rem;
-      color: $lightprimary;
-      &:hover {
-        color: $grey;
+    &-action-button {
+      flex: 1;
+      &.right {
+        display: flex;
+        justify-content: flex-end;
       }
-      &:focus {
-        color: $grey;
-      }
-      &.green {
-        background-color: $primary;
-        color: #fff;
+      button {
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+        padding: 0.2rem 0.5rem;
+        font-family: $fontfamily;
+        font-size: 1rem;
+        color: $lightprimary;
         &:hover {
-          background-color: $lightprimary;
+          color: $grey;
         }
         &:focus {
-          background-color: $lightprimary;
+          color: $grey;
         }
-      }
-      &[disabled] {
-        opacity: 0.4;
-        pointer-events: none;
-        :hover {
-          cursor: not-allowed;
+        &.green {
+          background-color: $primary;
+          color: #fff;
+          &:hover {
+            background-color: $lightprimary;
+          }
+          &:focus {
+            background-color: $lightprimary;
+          }
+        }
+        &[disabled] {
+          opacity: 0.4;
+          pointer-events: none;
+          :hover {
+            cursor: not-allowed;
+          }
         }
       }
     }
