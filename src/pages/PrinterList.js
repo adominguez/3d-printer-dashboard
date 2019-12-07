@@ -10,6 +10,7 @@ const PrinterList = () => {
   const dispath = useDispatch();
   const printers = useSelector(state => printerList(state));
   const status = useSelector(state => printerListStatus(state));
+  const printerListRetry = useSelector(state => state.printers.printerListRetry)
 
   const loadingMap = [{}, {}, {}, {}, {}, {}, {}, {}];
 
@@ -19,7 +20,7 @@ const PrinterList = () => {
   }
 
   useEffect(() => {
-    if (!printers) {
+    if (!printers && printerListRetry <= 5) {
       dispath(getPrinterList());
     }
   });

@@ -2,9 +2,14 @@ import { GET_PRINTERS_LIST_START, GET_PRINTERS_LIST_ERROR, GET_PRINTERS_LIST_DON
 
 const initialState = {
   loading: false,
+  printerListRetry: 0,
   printerListStatus: 'LOADING', // values: ['LOADING', 'COMPLETED', ERROR]
   createPrinterWizard: {
-    selectedStep: 0
+    selectedStep: 0,
+    nextStepButtonText: 'Next',
+    prevStepButtonText: 'Prev',
+    disabledNextStepButton: false,
+    disabledPrevStepButton: true,
   }
 }
 
@@ -13,7 +18,8 @@ export default function(state = initialState, action) {
     [GET_PRINTERS_LIST_START]() {
       return {
         ...state,
-        printerListStatus: 'LOADING'
+        printerListStatus: 'LOADING',
+        printerListRetry: state.printerListRetry + 1
       };
     },
     [GET_PRINTERS_LIST_ERROR]() {
@@ -35,8 +41,8 @@ export default function(state = initialState, action) {
       const { payload : selectedStep } = action;
       return {
         ...state,
-        ...state.createPrinterWizard,
         createPrinterWizard: {
+          ...state.createPrinterWizard,
           selectedStep
         }
       };
