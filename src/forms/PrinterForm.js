@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-function PrinterForm({type, onChangeInput, printer, formSubmit, onSubmitPrinter }) {
+function PrinterForm(props) {
 
-  const { printerName, printerAsin, printerImage, postLink, amazonLink, gearbestLink, printerDimensions, printerVolume, printerResolution, printerSpeed } = printer;
+  const { formSubmit, type, onSubmitPrinter, printerName, printerAsin, printerImage, postLink, amazonLink, gearbestLink, printerDimensions, printerVolume, printerResolution, printerSpeed } = props;
 
   useEffect(() => {
     if(formSubmit && type === 'NEW_PRINTER') {
       onSubmitPrinter();
     }
   });
+
+  const onChangeInput = () => {
+    console.log('hola')
+  }
 
   return (
     <form>

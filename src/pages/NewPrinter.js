@@ -5,6 +5,7 @@ import { printerList, printerListStatus } from '../selectors';
 import AppWizard from '../components/AppWizard';
 import AppStep from '../components/AppStep';
 import {changeStepPrinterWizard} from '../actions/printers'
+import PrinterForm from '../forms/PrinterForm';
 
 const NewPrinter = () => {
   const history = useHistory();
@@ -31,9 +32,7 @@ const NewPrinter = () => {
         selectedStep={selectedStep}
         changeStep={changeStep}
       >
-        <AppStep hidden={true} stepName="Inicio">
-          <div>Hola</div>
-        </AppStep>
+        <PrinterForm></PrinterForm>
         <AppStep stepName="Intermedio">
           <div>Adios</div>
         </AppStep>
