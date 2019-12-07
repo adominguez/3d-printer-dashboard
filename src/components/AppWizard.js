@@ -1,33 +1,46 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import './AppWizard.scss'
 
-const AppWizard = ({ children, selectedStep, changeStep }) => {
+const AppWizard = (props) => {
+  const { type, selectedStep, nextStepButtonText, prevStepButtonText, nextStepButtonHidden, prevStepButtonHidden, disabledNextStepButton, disabledPrevStepButton, children, changeStep } = props;
 
-  const newStep = (stepNumber) => {
-    changeStep(stepNumber);
+  const newStep = (selectedStep) => {
+    const newStepConfig = {
+      nextStepButtonHidden: selectedStep === children.length - 1,
+      prevStepButtonHidden: selectedStep === 0,
+      disabledNextStepButton,
+      disabledPrevStepButton,
+      selectedStep
+    }
+    changeStep(newStepConfig);
   }
 
   const nextStep = () => {
     const newStepVal = selectedStep + 1;
-    if(newStepVal < children.length) {
+
+    if (newStepVal < children.length) {
       newStep(newStepVal);
     }
   }
 
   const prevStep = () => {
     const newStepVal = selectedStep - 1;
-    if(newStepVal >= 0) {
+    if (newStepVal >= 0) {
       newStep(newStepVal);
     }
   }
 
+  const navigateToStep = (data) => {
+    newStep(data);
+  }
+
   return (
-    <div>
+    <div className={`wizard-${type || 'tabs'}`}>
       <div className="steps-header">
         {
           children.map((item, key) => {
             return (
-              <button className="green" key={key}>
+              <button disabled={selectedStep < key} className={`${selectedStep === key ? 'wizard-button-selected' : ''}`} key={key} onClick={() => navigateToStep(key)}>
                 {
                   item.props.stepIcon ?
                     <i className={`icon fa fa-${item.props.stepIcon} margin-right-4`}></i>
@@ -44,11 +57,11 @@ const AppWizard = ({ children, selectedStep, changeStep }) => {
         {children[selectedStep]}
       </div>
       <div className="steps-footer">
-        <button className="green" onClick={prevStep}>
-          <span>Prev</span>
+        <button hidden={prevStepButtonHidden} disabled={disabledPrevStepButton} onClick={prevStep}>
+          <span>{prevStepButtonText}</span>
         </button>
-        <button className="green" onClick={nextStep}>
-          <span>Next</span>
+        <button hidden={nextStepButtonHidden} disabled={disabledNextStepButton} className="green" onClick={nextStep}>
+          <span>{nextStepButtonText}</span>
         </button>
       </div>
     </div>

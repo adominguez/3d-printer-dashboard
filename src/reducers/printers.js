@@ -8,8 +8,10 @@ const initialState = {
     selectedStep: 0,
     nextStepButtonText: 'Next',
     prevStepButtonText: 'Prev',
+    nextStepButtonHidden: false,
+    prevStepButtonHidden: true,
     disabledNextStepButton: false,
-    disabledPrevStepButton: true,
+    disabledPrevStepButton: false,
   }
 }
 
@@ -38,12 +40,12 @@ export default function(state = initialState, action) {
       };
     },
     [CHANGE_STEP_PRINTER_WIZARD]() {
-      const { payload : selectedStep } = action;
+      const { payload : createPrinterWizard } = action;
       return {
         ...state,
         createPrinterWizard: {
           ...state.createPrinterWizard,
-          selectedStep
+          ...createPrinterWizard
         }
       };
     },
