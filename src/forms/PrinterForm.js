@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import AppInputTextField from '../components/AppInputTextField'
 
 function PrinterForm(props) {
 
@@ -10,18 +11,37 @@ function PrinterForm(props) {
     }
   });
 
-  const onChangeInput = () => {
-    console.log('hola')
+  const onChangeInput = (value) => {
+    console.log('hola', value);
   }
 
   return (
     <form>
-      <label className="has-float-label">
-        <input type="text" name="printerName" required placeholder="Impresora BQ" autoComplete="off" value={printerName || ''} onChange={(e) => onChangeInput(e)} />
-        <span className="label">Nombre de la impresora *</span>
-        <span className="helper">Inserta el nombre de la impresora 3D</span>
-			  <span className="error">Error: Please enter a valid email</span>
-      </label>
+      <AppInputTextField
+        required
+        value="50"
+        disabled
+        requiredText="Este campo es requerido, por favor completalo para continuar"
+        placeholder="Impresora Creality Ender 3"
+        labelText="Nombre de la impresora"
+        helperText="Inserta el nombre de la impresora 3D"
+        onChange={onChangeInput}
+      />
+      <AppInputTextField
+        type="email"
+        required
+        requiredText="Este campo es requerido, por favor completalo para continuar"
+        errorText="Rellena este campo con un email válido"
+        labelText="Código ASIN de Amazon"
+        helperText="Todos los productos de Amazon tienen un código ASIN que se puede ver en la url del producto"
+        onChange={onChangeInput}
+      />
+      <AppInputTextField
+        type="text"
+        labelText="Código ASIN de Amazon"
+        helperText="Todos los productos de Amazon tienen un código ASIN que se puede ver en la url del producto"
+        onChange={onChangeInput}
+      />
       <label className="has-float-label">
         <input type="text" name="printerAsin" required placeholder="B078GMM4T6" autoComplete="off" value={printerAsin || ''} onChange={(e) => onChangeInput(e)} />
         <span className="label">Código ASIN *</span>
