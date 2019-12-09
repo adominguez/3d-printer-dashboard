@@ -68,7 +68,7 @@ const AppInputTextField = (props) => {
 
   return (
     <label ref={ref} className={`inputTextfield ${cls}`}>
-      <input {...rest} ref={textInput} readOnly={optionsField ? true : readOnly} value={inputValue} placeholder={placeholder} className={`${errorInput ? 'invalid-input' : ''} ${optionsField ? 'drop-down-input' : ''}`} type={type} onChange={(e) => onChangeInput(e)} onFocus={onFocusInput} onBlur={onBlurInput} />
+      <input {...rest} ref={textInput} readOnly={optionsField ? true : readOnly} value={inputValue} placeholder={placeholder} className={`${errorInput ? 'invalid-input' : ''} ${optionsField ? 'dropdown-input' : ''}`} type={type} onChange={(e) => onChangeInput(e)} onFocus={onFocusInput} onBlur={onBlurInput} />
       <div className="input-buttons">
         {
           !optionsField && showClearButton && clearButtonShowed && inputValue !== '' &&
@@ -86,10 +86,10 @@ const AppInputTextField = (props) => {
       }
       {
         optionsField && showOptionsList &&
-        <ul className="drop-down-list">
+        <ul className="dropdown-list">
           {
             optionsField.map((item, key) => (
-              <li key={key}><button  className="drop-down-list-button" type="button" onClick={() => onSelectOptionsItem(item)}>{item.name}</button></li>
+              <li key={key}><button  className="dropdown-list-button" type="button" onClick={() => onSelectOptionsItem(item)}>{item.name}</button></li>
             ))
           }
         </ul>
