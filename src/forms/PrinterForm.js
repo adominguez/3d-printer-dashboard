@@ -11,8 +11,8 @@ function PrinterForm(props) {
     }
   });
 
-  const onChangeInput = (value) => {
-    console.log('hola', value);
+  const onChangeInput = (value, validate) => {
+    
   }
 
   return (
@@ -20,8 +20,6 @@ function PrinterForm(props) {
       <AppInputTextField
         required
         value="50"
-        disabled
-        requiredText="Este campo es requerido, por favor completalo para continuar"
         placeholder="Impresora Creality Ender 3"
         labelText="Nombre de la impresora"
         helperText="Inserta el nombre de la impresora 3D"
@@ -30,8 +28,16 @@ function PrinterForm(props) {
       <AppInputTextField
         type="email"
         required
+        showClearButton
         requiredText="Este campo es requerido, por favor completalo para continuar"
         errorText="Rellena este campo con un email válido"
+        labelText="Código ASIN de Amazon"
+        helperText="Todos los productos de Amazon tienen un código ASIN que se puede ver en la url del producto"
+        onChange={onChangeInput}
+      />
+      <AppInputTextField
+        optionsField={[{name: 'hola', value: 'hola'}, {name: 'adios', value: 'adios'}]}
+        type="text"
         labelText="Código ASIN de Amazon"
         helperText="Todos los productos de Amazon tienen un código ASIN que se puede ver en la url del producto"
         onChange={onChangeInput}
