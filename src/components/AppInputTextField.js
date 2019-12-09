@@ -76,7 +76,7 @@ const AppInputTextField = (props) => {
         }
         {
           optionsField &&
-          <span><i className={`icon fa fa-${showOptionsList ? openedSelect : closedSelected}`} /></span>
+          <span><i className={`icon fa fa-${showOptionsList ? openedSelect : closedSelected} ${!showOptionsList ? 'opened-select' : ''}`} /></span>
         }
       </div>
       <span className={`label ${!placeholder && inputValue === '' ? 'no-placeholder' : ''}`}>{labelText}</span>

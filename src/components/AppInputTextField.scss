@@ -139,12 +139,18 @@ $extrabolderfont : 700;
     button {
       background-color: transparent;
       border: 0;
-      color: #6B98A2;
+      color: $lightprimary;
+      font-size: var(--font);
+      padding: 0 2px;
     }
     span {
       margin-left: 5px;
       i {
+        color: $lightprimary;
         font-size: 14px;
+        &.opened-select {
+          color: $primary;
+        }
       }
     }
   }
@@ -178,6 +184,7 @@ $extrabolderfont : 700;
       width: 100%;
       box-sizing: border-box;
       button {
+        font-family: $fontfamily;
         width: 100%;
         text-align: left;
         background-color: transparent;
@@ -223,5 +230,3 @@ $extrabolderfont : 700;
     line-height: 1;
   }
 }
-
-.has-float-label {}
