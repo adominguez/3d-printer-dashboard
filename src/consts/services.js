@@ -1,3 +1,4 @@
 export const services = {
-  getPrinters: 'printers'
+  getPrinters: 'printers',
+  createCategory: 'add-new-category'
 }
