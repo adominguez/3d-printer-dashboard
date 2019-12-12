@@ -3,7 +3,7 @@ import UseOutsideClick from "./UseOutsideClick";
 import './AppInputTextField.scss'
 
 const AppInputTextField = (props) => {
-  const { cls = '', type = 'text', readOnly, showClearButton, labelText, value, helperText, errorText='This field has errors, please fill it correctly', placeholder, requiredText='This field is required', optionsField, closedSelected = 'chevron-down', openedSelect = 'chevron-up', onChange, ...rest } = props;
+  const { cls = '', type = 'text', readOnly, name, showClearButton, labelText, value, helperText, errorText='This field has errors, please fill it correctly', placeholder, requiredText='This field is required', optionsField, closedSelected = 'chevron-down', openedSelect = 'chevron-up', onChange, ...rest } = props;
   const textInput = useRef();
   const ref = useRef();
   const [inputValue, onChangeInputValue] = useState(value || '');
@@ -12,12 +12,23 @@ const AppInputTextField = (props) => {
   const [showOptionsList, onShowOptionsList] = useState(false);
   const [clearButtonShowed, onShowClearButton] = useState(false);
 
+  const generateRandomCode = (length => {
+    let result           = '';
+    const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  });
+
   const onChangeInput = (e) => {
     const validate = e.currentTarget.checkValidity();
     const value = e.currentTarget.value;
+    const textInputName = textInput.current.name;
     onSetError(!validate);
     onChangeInputValue(value);
-    onChange(value, validate);
+    onChange(textInputName, value, validate);
     if(showClearButton && !clearButtonShowed) {
       onShowClearButton(true);
     }
@@ -48,8 +59,9 @@ const AppInputTextField = (props) => {
 
   const onSelectOptionsItem = (item) => {
     const validate = textInput.current.checkValidity();
+    const textInputName = textInput.current.name;
     onChangeInputValue(item.name);
-    onChange(item.value, validate);
+    onChange(textInputName, item.value, validate);
     setTimeout(()=> {
       showOptions(false);
     }, 200)
@@ -60,15 +72,19 @@ const AppInputTextField = (props) => {
   });
 
   const onClearValue = () => {
-    const validate = textInput.current.checkValidity();
     onChangeInputValue('');
-    onChange('', validate);
-    onShowClearButton(false);
+    setTimeout(()=> {
+      const validate = textInput.current.checkValidity();
+      const textInputName = textInput.current.name;
+      onChange(textInputName, '', validate);
+      onSetError(!validate);
+      onShowClearButton(false);
+    }, 100)
   }
 
   return (
     <label ref={ref} className={`inputTextfield ${cls}`}>
-      <input {...rest} ref={textInput} readOnly={optionsField ? true : readOnly} value={inputValue} placeholder={placeholder} className={`${errorInput ? 'invalid-input' : ''} ${optionsField ? 'dropdown-input' : ''}`} type={type} onChange={(e) => onChangeInput(e)} onFocus={onFocusInput} onBlur={onBlurInput} />
+      <input {...rest} ref={textInput} name={name || 'AppInputTextField-' + generateRandomCode(8)} readOnly={optionsField ? true : readOnly} value={inputValue} placeholder={placeholder} className={`${errorInput ? 'invalid-input' : ''} ${optionsField ? 'dropdown-input' : ''}`} type={type} onChange={(e) => onChangeInput(e)} onFocus={onFocusInput} onBlur={onBlurInput} />
       <div className="input-buttons">
         {
           !optionsField && showClearButton && clearButtonShowed && inputValue !== '' &&
