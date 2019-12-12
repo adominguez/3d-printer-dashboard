@@ -19,6 +19,10 @@ const PrinterList = () => {
     history.push(`${location.pathname}/create-new-printer`);
   }
 
+  const onShowNewPrinterCategoryForm = () => {
+    history.push(`${location.pathname}/create-new-printer-category`);
+  }
+
   useEffect(() => {
     if (!printers && printerListRetry <= 5) {
       dispath(getPrinterList());
@@ -27,6 +31,10 @@ const PrinterList = () => {
   return (
     <section className="section-list">
       <div className="toolbar">
+        <button className="margin-right-12" onClick={() => onShowNewPrinterCategoryForm()}>
+          <i className={`icon fa fa-plus margin-right-4`}></i>
+          <span>Añadir nueva categoría de impresora</span>
+        </button>
         <button className="green" onClick={() => onShowNewPrinterForm()}>
           <i className={`icon fa fa-plus margin-right-4`}></i>
           <span>Añadir nueva impresora</span>

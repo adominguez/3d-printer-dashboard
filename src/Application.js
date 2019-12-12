@@ -10,6 +10,7 @@ import PrinterList from './pages/PrinterList';
 import NewPrinter from './pages/NewPrinter';
 import AppHeader from './components/AppHeader';
 import PrinterForm from './forms/PrinterForm';
+import CreatePrinterCategory from './forms/CreatePrinterCategory';
 const Application = ({ }) => {
   const modal = useSelector(state => state.application.modal);
 
@@ -22,6 +23,7 @@ const Application = ({ }) => {
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/printers" component={PrinterList} />
           <Route path="/printers/create-new-printer" component={NewPrinter} />
+          <Route path="/printers/create-new-printer-category" component={CreatePrinterCategory} />
         </AppPage>
       </Router>
       {

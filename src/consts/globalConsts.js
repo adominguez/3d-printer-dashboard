@@ -59,5 +59,12 @@ export const MENU_ITEMS = [
     hide: true,
     backButton: true
   },
+  {
+    name: 'Create new printer category',
+    icon: 'ship',
+    route: '/printers/create-new-printer-category',
+    hide: true,
+    backButton: true
+  },
 ]
 
