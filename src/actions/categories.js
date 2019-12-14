@@ -1,5 +1,10 @@
 import { CREATE_CATEGORY_START, GET_CATEGORIES_LIST_START, CHANGE_CATEGORY_INPUT } from '../consts/actionTypes';
 
+export const loadCategoryList = payload => ({
+  type: GET_CATEGORIES_LIST_START,
+  payload
+})
+
 export const changeCategoryInput = payload => ({
   type: CHANGE_CATEGORY_INPUT,
   payload

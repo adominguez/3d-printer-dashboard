@@ -5,16 +5,16 @@ import { services } from '../consts/services';
 
 export function* getCategoriesList() {
   try {
-    /*const {data : printerList} = yield call(apiCall, services.getPrinters, null, null, 'GET')
+    const {data : categoriesList} = yield call(apiCall, services.getCategories, null, null, 'GET')
     yield put({
       type: GET_CATEGORIES_LIST_DONE,
-      printerList
-    });*/
+      categoriesList
+    });
   } catch (error) {
-    /*yield put({
+    yield put({
       type: GET_CATEGORIES_LIST_ERROR,
       error
-    });*/
+    });
   }
 }
 
@@ -27,7 +27,6 @@ export function* createNewCategory(action) {
       productType : productType.value
     }
     const resp = yield call(apiCall, services.createCategory, data, null, 'GET');
-    debugger
     yield put({
       type: CREATE_CATEGORY_DONE,
     });
