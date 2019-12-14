@@ -35,8 +35,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         printerListStatus: 'COMPLETED',
-        printerList
-
+        printerList,
+        printerListRetry: 0
       };
     },
     [CHANGE_STEP_PRINTER_WIZARD]() {
